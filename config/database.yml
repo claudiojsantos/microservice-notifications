@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: 12345678
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: notify_service_development
+
+test:
+  <<: *default
+  database: notify_service_test
+
+production:
+  <<: *default
+  database: notify_service_production
+  username: notify_service
+  password: <%= ENV["NOTIFY_SERVICE_DATABASE_PASSWORD"] %>
